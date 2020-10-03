@@ -1,18 +1,15 @@
 class API
 
-    @try_id = (1..731).to_a
-    #scrape current list of super id numbers
-
-    @supers_alignment_list = []
-
-    def self.get_makeup_by_tag(tag)
-        if tag == "a"
-            url = "http://makeup-api.herokuapp.com/api/v1/products.json?product_tags=#{tag}"
+    def self.get_makeup_by_tag(input)
+        tag = ""
+        if input == "a"
+            tag = "natural"
         elsif tag == "b"
-            url = "http://makeup-api.herokuapp.com/api/v1/products.json?product_tags=#{tag}"
+            tag = "vegan"
         elsif tag == "c"
-            url = "http://makeup-api.herokuapp.com/api/v1/products.json?product_tags=#{tag}"
+            tag = "fair+trade"
         end
+        url = "http://makeup-api.herokuapp.com/api/v1/products.json?product_tags=#{tag}"
         uri = URI(url)
         response = Net::HTTP.get(uri)
         makeups = JSON.parse(response)
