@@ -1,4 +1,4 @@
-class Super
+class Makeup
 
     @@all = []
 

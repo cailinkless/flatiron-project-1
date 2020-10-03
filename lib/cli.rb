@@ -2,65 +2,53 @@ class CLI
 
     def run
         puts ""
-        puts "Welcome to SuperRecruits, the world's premiere organization for finding Super Heroes & Villains for hire since 2020!"
+        puts "Welcome to the Ethical Makeup Finder! This app helps you choose makeup brands and products that align with your values."
         puts ""
-        puts "Do you want to hire a SuperHelper? Enter 'Yes' to begin recruiting or 'No' to leave the program."
+        puts "Which of the following qualities is most important to you in a makeup?"
+        puts "Enter the corresponding letter or type 'exit' to close the app at any time."
         puts ""
-        consent_input = gets.strip.downcase.gsub(/[^a-z0-9\s]/i, '')
+        puts "a. Natural / Organic"
+        puts "b. Vegan / Cruelty-Free"
+        puts "c. Fair Trade"
+        puts ""
+        priority_input = gets.strip.downcase.gsub(/[^a-z0-9\s]/i, '')
         #add a "to quit at any time" message/method?
-        if consent_input == "yes"
+        if priority_input == "a"
+            #returns a list with appropriate tags
             puts ""
-            puts "Great! Please answer a few questions so we can match you with your ideal Super."
-            puts "Is your scheme:" 
+            puts "Okay, we found (x) brands offering natural / organic products in (y) categories."
             puts ""
-            puts "a. benevolent" 
-            puts "b. nefarious"
-            puts "c. neutral"
+            puts "Would you like to:"
             puts ""
-            alignment_input = gets.strip.downcase.gsub(/[^a-z0-9\s]/i, '')
-            if alignment_input == "a"
-                puts ""
-                puts "Great! Sounds like you need a Super Hero."
-                puts ""
-                @alignment = "good" #is this where this should go?
-            elsif alignment_input == "b"
-                puts ""
-                puts "Oooh. Sounds like you need a Super Villain."
-                puts ""
-                @alignment = "evil"
-            elsif alignment_input == "c"
-                # no alignment preference
-                puts ""
-                puts "Okay, great-- both Heroes and Villains might be willing to take this assignment."
-                puts ""
-                @alignment = "neutral"
-            else
-                puts ""
-                puts "Sorry, I don't understand. Please choose a., b., or c."
-                puts ""
-                #need a way to loop back into the program
-            end
-            binding.pry 
-            API.get_supers_by_alignment(@alignment)
-            puts "Okay, so what is the most important skill a Super would need to complete your assignment?"
+            puts "a. See the list of brands, or"
+            puts "b. filter by type of makeup (e.g. lipstick, blush, etc.)?"
             puts ""
-            puts "a. Intelligence"
-            puts "b. Strength"
-            puts "c. Speed"
-            puts "d. Durability"
-            puts "e. Power" #clarify what exactly this is???
-            puts "f. Combat"
+        elsif priority_input == "b"
             puts ""
-            priority_skill = gets.strip.downcase.gsub(/[^a-z0-9\s]/i, '')
-            #return a list of appropriate supers
-        elsif consent_input == "no"
+            puts "Okay, we found (x) brands offering vegan / cruelty-free products in (y) categories."
             puts ""
-            puts "That's okay. We hope you will think of SuperRecruits in future for all your Superhuman needs."
+            puts "Would you like to:"
             puts ""
-            #need way to fully close out program here?
+            puts "a. See the list of brands, or"
+            puts "b. filter by type of makeup (e.g. lipstick, blush, etc.)?"
+            puts ""
+        elsif priority_input == "c"
+            puts ""
+            puts "Okay, we found (x) brands offering vegan / cruelty-free products in (y) categories."
+            puts ""
+            puts "Would you like to:"
+            puts ""
+            puts "a. See the list of brands, or"
+            puts "b. filter by type of makeup (e.g. lipstick, blush, etc.)?"
+            puts ""
+        elsif priority_input == "exit"
+            puts ""
+            puts "Goodbye!"
+            puts ""
+            #need way to fully close out program here? or to close out at any time
         else
             puts ""
-            puts "Sorry, I don't understand. Please enter 'Yes' or 'No'."
+            puts "Sorry, I don't understand. Please choose 'a.', 'b.' or 'c.' (OR 'exit' to exit)."
             puts ""
             #need a way to loop back into the program
         end
