@@ -19,26 +19,29 @@ class CLI
             puts ""
             alignment_input = gets.strip.downcase.gsub(/[^a-z0-9\s]/i, '')
             if alignment_input == "a"
-                # Super's alignment should equal "good"
                 puts ""
                 puts "Great! Sounds like you need a Super Hero."
                 puts ""
+                @alignment = "good" #is this where this should go?
             elsif alignment_input == "b"
-                # Super's alignment shoulf equal "evil"?
                 puts ""
                 puts "Oooh. Sounds like you need a Super Villain."
                 puts ""
+                @alignment = "evil"
             elsif alignment_input == "c"
                 # no alignment preference
                 puts ""
                 puts "Okay, great-- both Heroes and Villains might be willing to take this assignment."
                 puts ""
+                @alignment = "neutral"
             else
                 puts ""
                 puts "Sorry, I don't understand. Please choose a., b., or c."
                 puts ""
                 #need a way to loop back into the program
             end
+            binding.pry 
+            API.get_supers_by_alignment(@alignment)
             puts "Okay, so what is the most important skill a Super would need to complete your assignment?"
             puts ""
             puts "a. Intelligence"
@@ -49,7 +52,7 @@ class CLI
             puts "f. Combat"
             puts ""
             priority_skill = gets.strip.downcase.gsub(/[^a-z0-9\s]/i, '')
-            
+            #return a list of appropriate supers
         elsif consent_input == "no"
             puts ""
             puts "That's okay. We hope you will think of SuperRecruits in future for all your Superhuman needs."
