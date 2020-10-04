@@ -21,49 +21,73 @@ class CLI
                 puts ""
                 input = gets.strip.downcase.gsub(/[^a-z0-9\s]/i, '')    
             end
-            if input == "a"
-                #binding.pry
-                API.get_makeup_by_tag(input)
-                x = Makeup.brands.length
-                y = Makeup.product_types.length
-                puts ""
-                puts "Okay, we found #{x} brands offering natural products in #{y} categories of makeup."
-                puts ""
-                puts "Would you like to:"
-                puts ""
-                puts "a. See the list of brands, or"
-                puts "b. filter by type of makeup (e.g. lipstick, blush, etc.)?"
-                puts ""
-            elsif input == "b"
-                puts ""
-                puts "Okay, we found (x) brands offering vegan products in (y) categories."
-                puts ""
-                puts "Would you like to:"
-                puts ""
-                puts "a. See the list of brands, or"
-                puts "b. filter by type of makeup (e.g. lipstick, blush, etc.)?"
-                puts ""
-            else input == "c"
-                puts ""
-                puts "Okay, we found (x) brands offering fair trade products in (y) categories."
-                puts ""
-                puts "Would you like to:"
-                puts ""
-                puts "a. See the list of brands, or"
-                puts "b. filter by type of makeup (e.g. lipstick, blush, etc.)?"
-                puts ""
-            end
+            puts ""
+            puts "Searching for some great matches..."
+            puts ""
+            API.get_makeup_by_tag(input)
+            x = Makeup.brands.length
+            y = Makeup.product_types.length
+            #binding.pry
+            puts ""
+            puts "Okay, we found #{x} brands offering THAT TYPE OF products in #{y} categories of makeup."
+            puts ""
+            puts "Would you like to:"
+            puts ""
+            puts "a. See the list of brands, or"
+            puts "b. filter by type of makeup (e.g. lipstick, blush, etc.)?"
+            puts ""
             input_2 = gets.strip.downcase.gsub(/[^a-z0-9\s]/i, '') 
             while input_2 != "a" && input_2 != "b"
+                puts ""
                 puts "Sorry, I don't understand. Please enter 'a' for a list of brands or 'b' to search by product."
+                puts ""
+                input_2 = gets.strip.downcase.gsub(/[^a-z0-9\s]/i, '') 
             end
             if input_2 == "a"
                 puts ""
-                puts "Here is your list of brands!"
+                puts "Here is your list of brands to check out!"
+                puts ""
+                Makeup.brands.sort.each_with_index {|brand, index| puts "#{index + 1}. #{brand.split.map(&:capitalize).join(' ')}"}
+                puts ""
+                puts "Thank you for using the Ethical Makeup Finder. Goodbye!"
                 puts ""
             else
                 puts ""
-                puts "What product are you looking for?"
+                puts "What product are you looking for? Enter by number:"
+                puts ""
+                sorted_products = Makeup.product_types.sort
+                Makeup.product_types.sort.each_with_index {|product_type, index| puts "#{index + 1}. #{product_type.split("_").map(&:capitalize).join(' ')}"}
+                puts ""
+                input_3 = gets.to_i
+                while input_3.to_i <= 0 || input_3.to_i > Makeup.product_types.length 
+                    puts ""
+                    puts "Sorry, I don't understand. Please enter a number from the list."
+                    puts ""
+                    input_3 = gets.to_i
+                end
+                product_list = Makeup.all.select {|product| product.product_type == sorted_products[input_3 - 1]}
+                puts ""
+                puts "Here is your list of products!"
+                puts ""
+                product_list.each_with_index {|product, index| puts "#{index + 1}. #{product.name}"}
+                puts ""
+                puts "To learn more about a product, enter its number."
+                puts ""
+                input_4 = gets.to_i
+                while input_4.to_i <= 0 || input_4.to_i > product_list.length 
+                    puts ""
+                    puts "Sorry, I don't understand. Please enter a number from the list."
+                    puts ""
+                    input_4 = gets.to_i
+                end
+                selected_product = Makeup.all.detect {|product| product.id == product_list[input_4 - 1].id}
+                puts ""
+                puts selected_product.name.split.map(&:capitalize).join(' ')
+                puts "Brand: #{selected_product.brand.split.map(&:capitalize).join(' ')}"
+                puts "Price: $#{selected_product.price}"
+                puts "Purchase online at #{selected_product.product_link}"
+                puts ""
+                puts "Thank you for using the Ethical Makeup Finder. Goodbye!"
                 puts ""
             end
         else
