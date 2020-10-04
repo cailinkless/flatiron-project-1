@@ -13,6 +13,10 @@ class API
         uri = URI(url)
         response = Net::HTTP.get(uri)
         makeups = JSON.parse(response)
+        makeups.each do |item|
+            Makeup.new(item)
+        end
+        #create and store the makeup objects
         #binding.pry
     end
 
