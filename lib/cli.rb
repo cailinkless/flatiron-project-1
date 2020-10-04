@@ -22,12 +22,12 @@ class CLI
                 input = gets.strip.downcase.gsub(/[^a-z0-9\s]/i, '')    
             end
             if input == "a"
-                binding.pry
-                #Makeup.create_by_tag(input)
-                x = #brands.length
-                y = #categories.length
+                #binding.pry
+                API.get_makeup_by_tag(input)
+                x = Makeup.brands.length
+                y = Makeup.product_types.length
                 puts ""
-                puts "Okay, we found (x) brands offering natural products in (y) categories."
+                puts "Okay, we found #{x} brands offering natural products in #{y} categories of makeup."
                 puts ""
                 puts "Would you like to:"
                 puts ""
