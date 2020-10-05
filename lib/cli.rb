@@ -6,7 +6,7 @@ class CLI
         puts "Welcome to the Ethical Makeup Finder! This app helps you choose makeup brands and products that align with your values."
         puts ""
         puts "Which of the following qualities is most important to you in a makeup?"
-        puts "Enter the corresponding letter or type 'exit' to close the app at any time."
+        puts "Enter the corresponding letter or type 'exit' to close the app."
         puts ""
         puts "a. Natural"
         puts "b. Vegan"
@@ -29,7 +29,7 @@ class CLI
             y = Makeup.product_types.length
             #binding.pry
             puts ""
-            puts "Okay, we found #{x} brands offering THAT TYPE OF products in #{y} categories of makeup."
+            puts "Okay, we found #{x} brands offering that type of product in #{y} categories of makeup."
             puts ""
             puts "Would you like to:"
             puts ""
