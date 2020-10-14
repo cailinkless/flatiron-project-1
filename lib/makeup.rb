@@ -14,9 +14,10 @@ class Makeup
         @@all
     end
 
+#repetitive?
     def self.brands
         raw_brand_list = self.all.collect {|makeup_item| makeup_item.brand unless makeup_item.brand == nil}
-        brands = raw_brand_list.uniq.reject {|brand| brand == nil}
+        brands = raw_brand_list.uniq
     end
 
     def self.product_types
