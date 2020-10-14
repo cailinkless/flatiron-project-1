@@ -16,8 +16,6 @@ class API
         makeups.each do |item|
             Makeup.new(item)
         end
-        #create and store the makeup objects
-        #binding.pry
     end
 
 end
