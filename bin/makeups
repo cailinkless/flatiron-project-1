@@ -2,7 +2,6 @@
 
 require 'pry'
 
-require 'nokogiri'
 require 'HTTParty'
 require 'json' 
 

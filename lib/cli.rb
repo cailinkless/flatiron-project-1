@@ -2,6 +2,7 @@ class CLI
 
     def run
 
+        #move into a separately located #welcome_message method?
         puts ""
         puts "Welcome to the Ethical Makeup Finder! This app helps you choose makeup brands and products that align with your values."
         puts ""
@@ -27,7 +28,7 @@ class CLI
             API.get_makeup_by_tag(input)
             x = Makeup.brands.length
             y = Makeup.product_types.length
-            #binding.pry
+            #move into a separately located #initial_results_message method?
             puts ""
             puts "Okay, we found #{x} brands offering that type of product in #{y} categories of makeup."
             puts ""
@@ -55,6 +56,7 @@ class CLI
                 puts ""
                 puts "What product are you looking for? Enter by number:"
                 puts ""
+#Make a separate method here?
                 sorted_products = Makeup.product_types.sort
                 Makeup.product_types.sort.each_with_index {|product_type, index| puts "#{index + 1}. #{product_type.split("_").map(&:capitalize).join(' ')}"}
                 puts ""
@@ -65,6 +67,7 @@ class CLI
                     puts ""
                     input_3 = gets.to_i
                 end
+#Make a separate method here?
                 product_list = Makeup.all.select {|product| product.product_type == sorted_products[input_3 - 1]}
                 puts ""
                 puts "Here is your list of products!"
@@ -80,12 +83,14 @@ class CLI
                     puts ""
                     input_4 = gets.to_i
                 end
+#Make a separate method here?
                 selected_product = Makeup.all.detect {|product| product.id == product_list[input_4 - 1].id}
                 puts ""
                 puts selected_product.name.split.map(&:capitalize).join(' ')
                 puts "Brand: #{selected_product.brand.split.map(&:capitalize).join(' ')}"
                 puts "Price: $#{selected_product.price}"
                 puts "Purchase online at #{selected_product.product_link}"
+ #Make a separate thank you message method here?               
                 puts ""
                 puts "Thank you for using the Ethical Makeup Finder. Goodbye!"
                 puts ""
