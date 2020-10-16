@@ -12,7 +12,7 @@ You are welcome to fork and clone your own copy of the Finder to tinker with, or
 
 Input ruby bin/makeups in the terminal while the flatiron-project-1 directory is open.
 
-## License DOUBLE CHECK, reword?
+## License
 
 The MIT License (MIT)
 
