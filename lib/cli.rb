@@ -28,6 +28,7 @@ class CLI
             API.get_makeup_by_tag(input)
             x = Makeup.brands.length
             y = Makeup.product_types.length
+            binding.pry
             #move into a separately located #initial_results_message method?
             puts ""
             puts "Okay, we found #{x} brands offering that type of product in #{y} categories of makeup."
